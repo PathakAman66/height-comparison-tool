@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import * as htmlToImage from "html-to-image";
+import * as domToImage from "dom-to-image";
 
 export default function App() {
   const [height, setHeight] = useState(170);
@@ -28,12 +28,13 @@ export default function App() {
   const scaledDoor = doorHeight * scaleFactor;
 
   const downloadImage = () => {
-    htmlToImage.toPng(chartRef.current).then((dataUrl) => {
-      const link = document.createElement("a");
-      link.download = "height-comparison.png";
-      link.href = dataUrl;
-      link.click();
-    });
+  domToImage.toPng(chartRef.current).then((dataUrl) => {
+    const link = document.createElement("a");
+    link.download = "height-chart.png";
+    link.href = dataUrl;
+    link.click();
+  });
+
   };
 
   const buttonStyle = {

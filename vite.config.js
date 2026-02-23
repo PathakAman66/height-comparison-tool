@@ -1,12 +1,9 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  build: {
-    rollupOptions: {
-      external: ['html-to-image'] // Vercel ke liye fix
-    }
+  ssr: {
+    noExternal: ['html-to-image'] // tell Vite to bundle it for SSR/build
   }
-})
+});
